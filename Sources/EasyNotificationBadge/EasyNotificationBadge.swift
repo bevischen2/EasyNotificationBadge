@@ -70,8 +70,8 @@ extension UIView {
         // get current badge size
         // calculate width and height with minimum height and width of 20
         let badgeSize = label.frame.size
-        var height = max(18, (badgeSize.height) + 5.0)
-        var width = max(height, (badgeSize.width) + 10.0)
+        var height = appearance.size?.width ?? max(18, (badgeSize.height) + 5.0)
+        var width = appearance.size?.height ?? max(height, (badgeSize.width) + 10.0)
         if let radius = appearance.radius {
             height = radius
             width = radius
@@ -224,7 +224,7 @@ public struct BadgeAppearance {
     public var distanceFromCenterY: CGFloat?
     public var distanceFromCenterX: CGFloat?
     public var radius: CGFloat?
-
+    public var size: CGSize?
 
     public init(font: UIFont = .systemFont(ofSize: 12),
                 textAlignment: NSTextAlignment = .center,
@@ -237,7 +237,9 @@ public struct BadgeAppearance {
                 duration: TimeInterval = 0.2,
                 distanceFromCenterY: CGFloat? = nil,
                 distanceFromCenterX: CGFloat? = nil,
-                radius: CGFloat? = nil) {
+                radius: CGFloat? = nil,
+                size: CGSize? = nil
+    ) {
         self.font = font
         self.textAlignment = textAlignment
         self.borderColor = borderColor
@@ -250,5 +252,6 @@ public struct BadgeAppearance {
         self.distanceFromCenterY = distanceFromCenterY
         self.distanceFromCenterX = distanceFromCenterX
         self.radius = radius
+        self.size = size
     }
 }
